@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h3>Are you sure to DELETE product: {{ products.name }}</h3>
+    <h5>Price: {{ products.price }}</h5>
+    <h5>Description: {{ products.description }}</h5>
+    <table border="0">
+        <tr>
+            <td>
+                <form action="{{ path('confirmdelete',{'id':products.id}) }}">
+                    <input type="submit" value="OK">
+                </form>
+            </td>
+            <td>
+                <form action="{{ path('homepage') }}">
+                    <input type="submit" value="Cancel">
+                </form>
+            </td>
+        </tr>
+    </table>
+
+
+{% endblock %}
+

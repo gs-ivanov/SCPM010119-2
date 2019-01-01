@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <a href="new">New Product</a>
+    <br/>
+    <a href="/sortasc">Sort ASC by Name</a>
+    <a href="/sortdesc">Sort DESC by Name</a>
+    <br/>
+    <a href="/sortpricedesc">Sort DESC by Price</a>
+    <a href="/sortpriceasc">Sort ASC by Price</a>
+    {#{{ dump(products) }}#}
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Tags</th>
+            <th colspan="3">Options</th>
+        </tr>
+        {% for product in products %}
+            <tr>
+                <td>{{product.name}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.category.name}}</td>
+                <td>{{product.tags|join(', ')}}</td>
+                <td><a href="{{ path('edit',{'id':product.id}) }}">edit</a> </td>
+                <td><a href="{{ path('delete',{'id':product.id}) }}">delete</a> </td>
+                <td><a href="{{ path('details',{'id':product.id}) }}">details</a> </td>
+            </tr>
+        {% else %}
+            <td colspan="2">No rows</td>
+        {% endfor %}
+    </table>
+{% endblock %}
+
